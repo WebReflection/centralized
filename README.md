@@ -2,6 +2,8 @@
 
 [![build status](https://github.com/WebReflection/centralized/actions/workflows/node.js.yml/badge.svg)](https://github.com/WebReflection/centralized/actions) [![Coverage Status](https://coveralls.io/repos/github/WebReflection/centralized/badge.svg?branch=main)](https://coveralls.io/github/WebReflection/centralized?branch=main)
 
+<sup>**Social Media Photo by [Alex wong](https://unsplash.com/@killerfvith) on [Unsplash](https://unsplash.com/)**</sup>
+
 A module to delegate to the main thread tasks meant to run for all forked threads.
 
 ```js
