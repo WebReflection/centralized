@@ -13,15 +13,19 @@ import {cpus} from 'node:os';
 import centralized from 'centralized';
 
 const appHelper = centralized({
-  // the init method executes once only in the main thread
-  init() {
-    // it can pollute its context with values
-    this.connection = db.connect({user, pass, stuff});
-  },
-  // all methods can be used seamlessly from worker ot main
+  // properties can have any value
+  connection: null,
+
+  // methods can be used seamlessly from worker ot main
   query: async function(sql, ...values) {
     const stmt = this.connection.prepare(sql);
     return await stmt.exec(...values);
+  },
+
+  // the init method executes once only in the main thread ...
+  init() {
+    // ... and it can pollute its context with values
+    this.connection = db.connect({user, pass, stuff});
   }
 });
 
