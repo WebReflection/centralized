@@ -43,7 +43,10 @@ else {
     console.assert('epic' === message);
   }
   // 4 + 5 + 3
-  console.assert(await nmsp.sum(4, 5) === 12);
+  console.time('roundtrip');
+  const sum = await nmsp.sum(4, 5);
+  console.timeEnd('roundtrip');
+  console.assert(sum === 12);
 
   const race = [
     nmsp.wait(250),
