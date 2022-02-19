@@ -14,6 +14,9 @@ const nmsp = centralized({
   },
   fail() {
     throw new Error('epic');
+  },
+  wait(ms) {
+    return new Promise($ => setTimeout($, ms, ms));
   }
 });
 
@@ -41,5 +44,18 @@ else {
   }
   // 4 + 5 + 3
   console.assert(await nmsp.sum(4, 5) === 12);
+
+  const race = [
+    nmsp.wait(250),
+    nmsp.wait(110),
+    nmsp.wait(25),
+    nmsp.wait(75)
+  ];
+
+  const winner = await Promise.race(race);
+  console.assert(winner === 25);
+
+  // wait for all promises to fulfill to avoid errors after exit
+  await Promise.allSettled(race);
   process.exit(0);
 }

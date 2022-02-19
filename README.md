@@ -17,7 +17,7 @@ const appHelper = centralized({
     this.connection = db.connect({user, pass, stuff});
   },
   // all methods can be used seamlessly from worker ot main
-  query: async (sql, ...values) => {
+  query: async function(sql, ...values) {
     const stmt = this.connection.prepare(sql);
     return await stmt.exec(...values);
   }
